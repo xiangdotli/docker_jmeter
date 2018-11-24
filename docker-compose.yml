@@ -1,0 +1,15 @@
+# reference: https://www.blazemeter.com/blog/jmeter-distributed-testing-with-docker
+
+version: '3'
+
+services:
+    j-slave-1:
+        image: jmeter_xl
+        volumes:
+            - /Users/lixiang/Documents/docker/docker_jmeter/test:/test
+        command: -s -n -j /test/jmeter-server.log -Jclient.rmi.localport=7000 -Jserver.rmi.localport=7001
+    j-slave-2:
+        image: jmeter_xl
+        volumes:
+            - /Users/lixiang/Documents/docker/docker_jmeter/test:/test
+        command: -s -n -j /test/jmeter-server.log -Jclient.rmi.localport=7000 -Jserver.rmi.localport=7001   
